@@ -11,9 +11,12 @@ If you're facing any issues with the code, please post in the course Q&A section
 - **Other Resources:** Other resources (like the course slides) can be found in the [/other](/other/) folder.
 
 The **Code Snapshots** and **Lecture Attachments** folders contain one subfolder per course section - this allows you to easily access the resources for a specific course section.
+<<<<<<< HEAD
 
 # How To Use Code Snapshots
 
 Code snapshots are primarily provided to allow you to compare your code to mine. The snapshots are taken directly from the course recordings and therefore reflect my code you see in the videos.
 
 Of course, you can also try running those code snapshots on your machine. You'll need to run `npm install` in the individual snapshot folders, followed by `npm run dev` to start the development server - just as shown in the course.
+=======
+>>>>>>> 8555aac93a0edd8263a8520a5b1f0d57e4c8c728
