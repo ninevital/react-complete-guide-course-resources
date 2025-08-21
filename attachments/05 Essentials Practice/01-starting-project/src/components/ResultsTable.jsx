@@ -1,6 +1,16 @@
-//map ech row of data to a table row with 5 cells
+import { formatter, calculateInvestmentResults } from '../util/investment';
+
+// - initialInvestment: The initial investment amount
+// - annualInvestment: The amount invested every year
+// - expectedReturn: The expected (annual) rate of return
+// - duration: The investment duration (time frame)
+//       interest: interestEarnedInYear, // the amount of interest earned in this year
+//       valueEndOfYear: investmentValue, // investment value at end of year
 
 export default function ResultsTable({data}) {
+    const calculatedData = calculateInvestmentResults(data);
+    const initialInvestment = data.initialInvestment || 0;
+
     return (
         <table id="result">
         <thead>
@@ -13,13 +23,13 @@ export default function ResultsTable({data}) {
             </tr>
         </thead>
         <tbody>
-            {data.map((row, index) => (
-                <tr key={index}>
-                    <td>{index + 1}</td>
-                    <td>{row.investmentValue}</td>
-                    <td>{row.interestYear}</td>
-                    <td>{row.totalInterest}</td>
-                    <td>{row.toInvestedCapital}</td>
+            {calculatedData.map((row) => (
+                <tr key={row.year}>
+                    <td>{row.year}</td>
+                    <td>{formatter.format(row.valueEndOfYear)}</td> 
+                    <td>{formatter.format(row.interest)}</td>
+                    <td>{formatter.format(row.valueEndOfYear - row.annualInvestment * row.year - initialInvestment)}</td>
+                    <td>{formatter.format(row.valueEndOfYear - (row.valueEndOfYear - row.annualInvestment * row.year - initialInvestment))}</td>
                 </tr>
             ))}
         </tbody>
