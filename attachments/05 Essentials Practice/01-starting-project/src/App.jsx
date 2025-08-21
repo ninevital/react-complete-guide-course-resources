@@ -5,14 +5,16 @@ import ResultsTable from './components/ResultsTable';
 import {calculateInvestmentResults} from './util/investment';
 
 const initialInvestmentsData = {
-  initialInvestment: null,
-  annualInvestment: null,
-  expectedReturn: null,
-  duration: null
+  initialInvestment: 0,
+  annualInvestment: 0,
+  expectedReturn: 0,
+  duration: 0,
 };
 
 function App() {
   const [investmentsData, setNewData] = useState(initialInvestmentsData);
+
+const formIsValid = investmentsData.duration > 0;
 
 function handleInputChange(event) {
     const { id, value } = event.target;
@@ -28,7 +30,7 @@ function handleInputChange(event) {
     <>
       <Header />
       <UserInput data={investmentsData} handleInputChange={handleInputChange} />
-      <ResultsTable data={investmentsData} />
+      {formIsValid ? <ResultsTable data={investmentsData} /> : <p className="center">Please enter positive value for duration field.</p>}
     </>
   )
 }
